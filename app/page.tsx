@@ -60,7 +60,7 @@ const translations = {
       email: "Email",
       phone: "WhatsApp",
     },
-    footer: "Feito com ❤️ por Brenno Oliveira",
+    footer: "Feito por Brenno Oliveira",
   },
   en: {
     nav: {
@@ -96,7 +96,7 @@ const translations = {
       email: "Email",
       phone: "WhatsApp",
     },
-    footer: "Made with ❤️ by Brenno Oliveira",
+    footer: "Made by Brenno Oliveira",
   },
 }
 
