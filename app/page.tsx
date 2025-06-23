@@ -60,7 +60,7 @@ const translations = {
       email: "Email",
       phone: "WhatsApp",
     },
-    footer: "Feito por Brenno Oliveira",
+    footer: "Feito com ❤️ por Brenno Oliveira",
   },
   en: {
     nav: {
@@ -96,7 +96,7 @@ const translations = {
       email: "Email",
       phone: "WhatsApp",
     },
-    footer: "Made by Brenno Oliveira",
+    footer: "Made with ❤️ by Brenno Oliveira",
   },
 }
 
@@ -137,8 +137,8 @@ const MatrixRain = () => {
         const text = matrix[Math.floor(Math.random() * matrix.length)]
 
         // Use pastel blue colors
-        const opacity = Math.random() * 0.8 + 0.2
-        ctx.fillStyle = `rgba(147, 197, 253, ${opacity})`
+        const opacity = Math.random() * 0.9 + 0.4
+        ctx.fillStyle = `rgba(100, 150, 220, ${opacity})`
 
         ctx.fillText(text, i * font_size, drops[i] * font_size)
 
@@ -330,7 +330,7 @@ const ProjectCarousel = ({ language }: { language: "pt" | "en" }) => {
 
   return (
     <div className="relative w-full max-w-6xl mx-auto">
-      <div className="relative h-[500px] overflow-hidden rounded-2xl">
+      <div className="relative min-h-[400px] md:h-[500px] overflow-hidden rounded-2xl">
         <AnimatePresence mode="wait">
           <motion.div
             key={currentIndex}
@@ -341,23 +341,39 @@ const ProjectCarousel = ({ language }: { language: "pt" | "en" }) => {
             className="absolute inset-0"
           >
             <Card className="w-full h-full bg-white/80 backdrop-blur-sm border-slate-200 shadow-xl">
-              <CardContent className="p-8 h-full flex flex-col md:flex-row">
-                <div className="flex-1 pr-0 md:pr-8 mb-6 md:mb-0">
-                  <div className="flex items-center gap-3 mb-4">
-                    <h3 className="text-2xl font-bold text-slate-800">{projects[currentIndex].title}</h3>
-                    <span className="px-3 py-1 bg-blue-100 text-blue-600 text-sm rounded-full font-medium">
-                      {projects[currentIndex].status}
-                    </span>
+              <CardContent className="p-4 sm:p-6 md:p-8 h-full flex flex-col">
+                {/* Mobile Layout - Stacked */}
+                <div className="flex flex-col md:hidden space-y-4">
+                  <div className="w-full h-48 sm:h-56">
+                    <img
+                      src={projects[currentIndex].image || "/placeholder.svg"}
+                      alt={projects[currentIndex].title}
+                      className="w-full h-full object-cover rounded-xl shadow-lg"
+                    />
                   </div>
-                  <p className="text-slate-600 text-lg leading-relaxed mb-6">{projects[currentIndex].description}</p>
-                  <div className="flex flex-wrap gap-2 mb-6">
-                    {projects[currentIndex].tech.map((tech) => (
-                      <span key={tech} className="px-3 py-1 bg-slate-100 text-slate-700 text-sm rounded-lg font-medium">
-                        {tech}
+                  <div className="flex-1">
+                    <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-3 mb-3">
+                      <h3 className="text-lg sm:text-xl font-bold text-slate-800 flex-1">
+                        {projects[currentIndex].title}
+                      </h3>
+                      <span className="px-2 py-1 bg-blue-100 text-blue-600 text-xs rounded-full font-medium w-fit">
+                        {projects[currentIndex].status}
                       </span>
-                    ))}
-                  </div>
-                  <a href={projects[currentIndex].link} target="_blank" rel="noopener noreferrer">
+                    </div>
+                    <p className="text-slate-600 text-sm sm:text-base leading-relaxed mb-4 line-clamp-3">
+                      {projects[currentIndex].description}
+                    </p>
+                    <div className="flex flex-wrap gap-1 sm:gap-2 mb-4">
+                      {projects[currentIndex].tech.map((tech) => (
+                        <span
+                          key={tech}
+                          className="px-2 py-1 bg-slate-100 text-slate-700 text-xs rounded-lg font-medium"
+                        >
+                          {tech}
+                        </span>
+                      ))}
+                    </div>
+                     <a href={projects[currentIndex].link} target="_blank" rel="noopener noreferrer">
                     <Button
                       variant="outline"
                       className="bg-blue-50 border-blue-200 text-blue-600 hover:bg-blue-100 hover:border-blue-300"
@@ -366,14 +382,46 @@ const ProjectCarousel = ({ language }: { language: "pt" | "en" }) => {
                       {language === "pt" ? "Ver Projeto" : "View Project"}
                     </Button>
                   </a>
-
+                  </div>
                 </div>
-                <div className="flex-1">
-                  <img
-                    src={projects[currentIndex].image || "/placeholder.svg"}
-                    alt={projects[currentIndex].title}
-                    className="w-full h-full object-cover rounded-xl shadow-lg"
-                  />
+
+                {/* Desktop Layout - Side by Side */}
+                <div className="hidden md:flex h-full">
+                  <div className="flex-1 pr-8">
+                    <div className="flex items-center gap-3 mb-4">
+                      <h3 className="text-2xl font-bold text-slate-800">{projects[currentIndex].title}</h3>
+                      <span className="px-3 py-1 bg-blue-100 text-blue-600 text-sm rounded-full font-medium">
+                        {projects[currentIndex].status}
+                      </span>
+                    </div>
+                    <p className="text-slate-600 text-lg leading-relaxed mb-6">{projects[currentIndex].description}</p>
+                    <div className="flex flex-wrap gap-2 mb-6">
+                      {projects[currentIndex].tech.map((tech) => (
+                        <span
+                          key={tech}
+                          className="px-3 py-1 bg-slate-100 text-slate-700 text-sm rounded-lg font-medium"
+                        >
+                          {tech}
+                        </span>
+                      ))}
+                    </div>
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      className="bg-blue-50 border-blue-200 text-blue-600 hover:bg-blue-100 hover:border-blue-300"
+                      onClick={() => window.open(projects[currentIndex].link, "_blank")}
+                    >
+                      <ExternalLink className="w-4 h-4 mr-2" />
+                      {language === "pt" ? "Ver Projeto" : "View Project"}
+                    </Button>
+                  </div>
+                  <div className="flex-1">
+                    <img
+                      src={projects[currentIndex].image || "/placeholder.svg"}
+                      alt={projects[currentIndex].title}
+                      className="w-full h-full object-cover rounded-xl shadow-lg"
+                    />
+                  </div>
                 </div>
               </CardContent>
             </Card>
@@ -400,8 +448,9 @@ const ProjectCarousel = ({ language }: { language: "pt" | "en" }) => {
                 setIsAutoPlaying(false)
                 setTimeout(() => setIsAutoPlaying(true), 10000)
               }}
-              className={`w-3 h-3 rounded-full transition-all duration-300 ${index === currentIndex ? "bg-blue-400 scale-125" : "bg-slate-300"
-                }`}
+              className={`w-3 h-3 rounded-full transition-all duration-300 ${
+                index === currentIndex ? "bg-blue-400 scale-125" : "bg-slate-300"
+              }`}
             />
           ))}
         </div>
@@ -438,20 +487,20 @@ export default function Portfolio() {
 
   const skillCategories = {
     frontend: [
-      { name: "JavaScript", percentage: 70 },
-      { name: "TypeScript", percentage: 60 },
-      { name: "React", percentage: 70 },
+      { name: "JavaScript", percentage: 75 },
+      { name: "TypeScript", percentage: 70 },
+      { name: "React", percentage: 60 },
       { name: "Next.js", percentage: 50 },
     ],
     backend: [
       { name: "Node.js", percentage: 50 },
       { name: "Python", percentage: 70 },
-      { name: "Django", percentage: 60 },
+      { name: "Django", percentage: 70 },
       { name: "Jest/Testing", percentage: 85 },
       { name: "Git", percentage: 90 },
     ],
     database: [
-      { name: "PostgreSQL", percentage: 75 },
+      { name: "PostgreSQL", percentage: 70 },
       { name: "Supabase", percentage: 65 },
     ],
   }
@@ -534,15 +583,12 @@ export default function Portfolio() {
               </p>
               <Button
                 size="lg"
-                onClick={() =>
-                  document.getElementById("projects")?.scrollIntoView({ behavior: "smooth" })
-                }
                 className="bg-blue-400 hover:bg-blue-500 text-white font-medium px-6 sm:px-8 py-3 sm:py-4 text-base sm:text-lg rounded-xl shadow-lg hover:shadow-xl transition-all duration-300"
+                onClick={() => window.open("#projects", "_self")}
               >
                 <Code className="w-4 sm:w-5 h-4 sm:h-5 mr-2" />
                 {t.hero.cta}
               </Button>
-
             </motion.div>
 
             <motion.div
@@ -651,7 +697,7 @@ export default function Portfolio() {
             {/* Database Skills + Experience */}
             <motion.div
               initial={{ opacity: 0, x: 50 }}
-              whileInView={{ opacity: 1, x: 0 }}
+              whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.4 }}
               className="order-4 lg:order-4 space-y-8"
             >
@@ -748,7 +794,7 @@ export default function Portfolio() {
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8 max-w-5xl mx-auto">
             <motion.a
-              href={`mailto:BrennoOliveirq@outlook.com?subject=${encodeURIComponent(emailSubject)}&body=${encodeURIComponent(emailBody)}`}
+              href={`mailto:BrennoOliveira@outlook.com?subject=${encodeURIComponent(emailSubject)}&body=${encodeURIComponent(emailBody)}`}
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.1 }}
@@ -756,11 +802,11 @@ export default function Portfolio() {
             >
               <Mail className="w-10 sm:w-12 h-10 sm:h-12 text-blue-400 mx-auto mb-4 group-hover:scale-110 transition-transform" />
               <h3 className="text-base sm:text-lg font-medium text-slate-800 mb-2">{t.contact.email}</h3>
-              <p className="text-slate-600 text-xs sm:text-sm break-all">BrennoOliveirq@outlook.com</p>
+              <p className="text-slate-600 text-xs sm:text-sm break-all">BrennoOliveira@outlook.com</p>
             </motion.a>
 
             <motion.a
-              href={`https://wa.me/5561998590309?text=${encodeURIComponent(whatsappMessage)}`}
+              href="https://wa.me/5561998590309"
               target="_blank"
               rel="noopener noreferrer"
               initial={{ opacity: 0, y: 30 }}
@@ -774,7 +820,7 @@ export default function Portfolio() {
             </motion.a>
 
             <motion.a
-              href="https://linkedin.com/in/brenno-oliveira"
+              href="https://www.linkedin.com/in/brenno-oliveira-5264b9265/"
               target="_blank"
               rel="noopener noreferrer"
               initial={{ opacity: 0, y: 30 }}
@@ -788,7 +834,7 @@ export default function Portfolio() {
             </motion.a>
 
             <motion.a
-              href="https://instagram.com/brenno.oliveira"
+              href="https://www.instagram.com/br_oliveira30/"
               target="_blank"
               rel="noopener noreferrer"
               initial={{ opacity: 0, y: 30 }}
@@ -798,7 +844,7 @@ export default function Portfolio() {
             >
               <Instagram className="w-10 sm:w-12 h-10 sm:h-12 text-blue-400 mx-auto mb-4 group-hover:scale-110 transition-transform" />
               <h3 className="text-base sm:text-lg font-medium text-slate-800 mb-2">Instagram</h3>
-              <p className="text-slate-600 text-xs sm:text-sm">@brenno.oliveira</p>
+              <p className="text-slate-600 text-xs sm:text-sm">@br_oliveira30</p>
             </motion.a>
           </div>
         </div>
