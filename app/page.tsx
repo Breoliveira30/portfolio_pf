@@ -60,7 +60,7 @@ const translations = {
       email: "Email",
       phone: "WhatsApp",
     },
-    footer: "Feito com ❤️ por Brenno Oliveira",
+    footer: "Feito por Brenno Oliveira",
   },
   en: {
     nav: {
@@ -96,7 +96,7 @@ const translations = {
       email: "Email",
       phone: "WhatsApp",
     },
-    footer: "Made with ❤️ by Brenno Oliveira",
+    footer: "Made by Brenno Oliveira",
   },
 }
 
@@ -438,20 +438,21 @@ export default function Portfolio() {
 
   const skillCategories = {
     frontend: [
-      { name: "JavaScript", percentage: 85 },
-      { name: "TypeScript", percentage: 80 },
-      { name: "React", percentage: 90 },
-      { name: "Next.js", percentage: 75 },
+      { name: "JavaScript", percentage: 70 },
+      { name: "TypeScript", percentage: 60 },
+      { name: "React", percentage: 70 },
+      { name: "Next.js", percentage: 50 },
     ],
     backend: [
-      { name: "Node.js", percentage: 80 },
+      { name: "Node.js", percentage: 50 },
       { name: "Python", percentage: 70 },
+      { name: "Django", percentage: 60 },
       { name: "Jest/Testing", percentage: 85 },
       { name: "Git", percentage: 90 },
     ],
     database: [
       { name: "PostgreSQL", percentage: 75 },
-      { name: "MongoDB", percentage: 65 },
+      { name: "Supabase", percentage: 65 },
     ],
   }
 
@@ -533,11 +534,15 @@ export default function Portfolio() {
               </p>
               <Button
                 size="lg"
+                onClick={() =>
+                  document.getElementById("projects")?.scrollIntoView({ behavior: "smooth" })
+                }
                 className="bg-blue-400 hover:bg-blue-500 text-white font-medium px-6 sm:px-8 py-3 sm:py-4 text-base sm:text-lg rounded-xl shadow-lg hover:shadow-xl transition-all duration-300"
               >
                 <Code className="w-4 sm:w-5 h-4 sm:h-5 mr-2" />
                 {t.hero.cta}
               </Button>
+
             </motion.div>
 
             <motion.div
