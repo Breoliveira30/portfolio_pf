@@ -44,7 +44,7 @@ const translations = {
         "Desenvolvedor com 1 ano e 3 meses de experiência na Defensoria Pública do Distrito Federal, atuando tanto no desenvolvimento quanto em testes de software. Apaixonado por criar soluções que fazem a diferença na vida das pessoas.",
       skills: "Minhas Habilidades",
       frontend: "Front-end",
-      backend: "Back-end",
+      backend: "Front-end",
       database: "Dados",
       experience: "Experiência",
       experienceText:
@@ -80,7 +80,7 @@ const translations = {
         "Developer with 1 year and 3 months of experience at the Public Defender's Office of the Federal District, working in both development and software testing. Passionate about creating solutions that make a difference in people's lives.",
       skills: "My Skills",
       frontend: "Front-end",
-      backend: "Back-end",
+      backend: "Data",
       database: "Data",
       experience: "Experience",
       experienceText:
@@ -137,8 +137,8 @@ const MatrixRain = () => {
         const text = matrix[Math.floor(Math.random() * matrix.length)]
 
         // Use pastel blue colors
-        const opacity = Math.random() * 0.9 + 0.4
-        ctx.fillStyle = `rgba(100, 150, 220, ${opacity})`
+        const opacity = Math.random() * 0.95 + 0.5
+        ctx.fillStyle = `rgba(70, 130, 200, ${opacity})`
 
         ctx.fillText(text, i * font_size, drops[i] * font_size)
 
@@ -282,7 +282,10 @@ const ProjectCarousel = ({ language }: { language: "pt" | "en" }) => {
     },
     {
       id: 2,
-      title: language === "pt" ? "WaterGuardian - Monitor de Consumo de Água IoT" : "WaterGuardian - IoT Water Consumption Monitor",
+      title:
+        language === "pt"
+          ? "WaterGuardian - Monitor de Consumo de Água IoT"
+          : "WaterGuardian - IoT Water Consumption Monitor",
       description:
         language === "pt"
           ? "Sistema completo de monitoramento em tempo real do consumo de água com sensores IoT, dashboard interativo, alertas de vazamento e relatórios de economia desenvolvido com TypeScript, CSS e JavaScript."
@@ -294,7 +297,10 @@ const ProjectCarousel = ({ language }: { language: "pt" | "en" }) => {
     },
     {
       id: 3,
-      title: language === "pt" ? " Landing Page Desenolvimento de sites e Lading Page" : "Landing Page Website development and Lading Page",
+      title:
+        language === "pt"
+          ? " Landing Page Desenolvimento de sites e Lading Page"
+          : "Landing Page Website development and Lading Page",
       description:
         language === "pt"
           ? "O DevDuo é um site portfólio criado para apresentar os projetos e trabalhos desenvolvidos por dois profissionais da área de tecnologia. O objetivo é demonstrar suas habilidades como desenvolvedores, fortalecer sua presença no meio digital e atrair novos clientes interessados em soluções personalizadas de desenvolvimento."
@@ -330,7 +336,7 @@ const ProjectCarousel = ({ language }: { language: "pt" | "en" }) => {
 
   return (
     <div className="relative w-full max-w-6xl mx-auto">
-      <div className="relative min-h-[400px] md:h-[500px] overflow-hidden rounded-2xl">
+      <div className="relative min-h-[600px] sm:min-h-[650px] md:h-[500px] overflow-hidden rounded-2xl">
         <AnimatePresence mode="wait">
           <motion.div
             key={currentIndex}
@@ -343,45 +349,49 @@ const ProjectCarousel = ({ language }: { language: "pt" | "en" }) => {
             <Card className="w-full h-full bg-white/80 backdrop-blur-sm border-slate-200 shadow-xl">
               <CardContent className="p-4 sm:p-6 md:p-8 h-full flex flex-col">
                 {/* Mobile Layout - Stacked */}
-                <div className="flex flex-col md:hidden space-y-4">
-                  <div className="w-full h-48 sm:h-56">
+                <div className="flex flex-col md:hidden space-y-4 h-full">
+                  <div className="w-full h-48 sm:h-56 flex-shrink-0">
                     <img
                       src={projects[currentIndex].image || "/placeholder.svg"}
                       alt={projects[currentIndex].title}
                       className="w-full h-full object-cover rounded-xl shadow-lg"
                     />
                   </div>
-                  <div className="flex-1">
-                    <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-3 mb-3">
-                      <h3 className="text-lg sm:text-xl font-bold text-slate-800 flex-1">
-                        {projects[currentIndex].title}
-                      </h3>
-                      <span className="px-2 py-1 bg-blue-100 text-blue-600 text-xs rounded-full font-medium w-fit">
-                        {projects[currentIndex].status}
-                      </span>
-                    </div>
-                    <p className="text-slate-600 text-sm sm:text-base leading-relaxed mb-4 line-clamp-3">
-                      {projects[currentIndex].description}
-                    </p>
-                    <div className="flex flex-wrap gap-1 sm:gap-2 mb-4">
-                      {projects[currentIndex].tech.map((tech) => (
-                        <span
-                          key={tech}
-                          className="px-2 py-1 bg-slate-100 text-slate-700 text-xs rounded-lg font-medium"
-                        >
-                          {tech}
+                  <div className="flex-1 flex flex-col justify-between min-h-0">
+                    <div>
+                      <div className="flex flex-col sm:flex-row sm:items-start gap-2 sm:gap-3 mb-3">
+                        <h3 className="text-lg sm:text-xl font-bold text-slate-800 flex-1 leading-tight">
+                          {projects[currentIndex].title}
+                        </h3>
+                        <span className="px-2 py-1 bg-blue-100 text-blue-600 text-xs rounded-full font-medium w-fit">
+                          {projects[currentIndex].status}
                         </span>
-                      ))}
+                      </div>
+                      <p className="text-slate-600 text-sm sm:text-base leading-relaxed mb-4">
+                        {projects[currentIndex].description}
+                      </p>
+                      <div className="flex flex-wrap gap-1 sm:gap-2 mb-4">
+                        {projects[currentIndex].tech.map((tech) => (
+                          <span
+                            key={tech}
+                            className="px-2 py-1 bg-slate-100 text-slate-700 text-xs rounded-lg font-medium"
+                          >
+                            {tech}
+                          </span>
+                        ))}
+                      </div>
                     </div>
-                     <a href={projects[currentIndex].link} target="_blank" rel="noopener noreferrer">
-                    <Button
-                      variant="outline"
-                      className="bg-blue-50 border-blue-200 text-blue-600 hover:bg-blue-100 hover:border-blue-300"
-                    >
-                      <ExternalLink className="w-4 h-4 mr-2" />
-                      {language === "pt" ? "Ver Projeto" : "View Project"}
-                    </Button>
-                  </a>
+                    <div className="mt-auto">
+                      <a href={projects[currentIndex].link} target="_blank" rel="noopener noreferrer" className="block">
+                        <Button
+                          variant="outline"
+                          className="bg-blue-50 border-blue-200 text-blue-600 hover:bg-blue-100 hover:border-blue-300 w-full"
+                        >
+                          <ExternalLink className="w-4 h-4 mr-2" />
+                          {language === "pt" ? "Ver Projeto" : "View Project"}
+                        </Button>
+                      </a>
+                    </div>
                   </div>
                 </div>
 
@@ -599,11 +609,7 @@ export default function Portfolio() {
             >
               <div className="relative">
                 <div className="w-64 sm:w-80 h-64 sm:h-80 rounded-full bg-gradient-to-br from-blue-200 to-slate-200 shadow-2xl overflow-hidden">
-                  <img
-                    src="/brenno-profcie.jpeg"
-                    alt="Brenno Oliveira"
-                    className="w-full h-full object-cover"
-                  />
+                  <img src="/brenno-profcie.jpeg" alt="Brenno Oliveira" className="w-full h-full object-cover" />
                 </div>
                 <div className="absolute -bottom-3 sm:-bottom-4 -right-3 sm:-right-4 w-16 sm:w-24 h-16 sm:h-24 bg-blue-400 rounded-full flex items-center justify-center shadow-lg">
                   <Code className="w-8 sm:w-12 h-8 sm:h-12 text-white" />
@@ -632,13 +638,13 @@ export default function Portfolio() {
             </p>
           </motion.div>
 
-          <div className="grid lg:grid-cols-4 gap-8 lg:gap-12 items-start">
+          <div className="flex flex-col lg:grid lg:grid-cols-3 gap-8 lg:gap-12 items-start">
             {/* Photo Section - Portrait Style */}
             <motion.div
               initial={{ opacity: 0, y: 50 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8 }}
-              className="flex justify-center lg:justify-start order-1 lg:order-1"
+              className="flex justify-center lg:order-1 lg:col-span-1 w-full"
             >
               <div className="relative">
                 <div className="w-56 sm:w-64 h-72 sm:h-80 rounded-2xl bg-gradient-to-br from-blue-200 to-slate-200 shadow-xl overflow-hidden">
@@ -658,49 +664,39 @@ export default function Portfolio() {
               </div>
             </motion.div>
 
-            {/* Frontend Skills */}
+            {/* Skills Section - Empilhadas Verticalmente */}
             <motion.div
               initial={{ opacity: 0, x: -50 }}
               whileInView={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8 }}
-              className="order-2 lg:order-2"
+              className="lg:order-2 lg:col-span-1 w-full max-w-md mx-auto lg:mx-0 lg:max-w-none space-y-8"
             >
-              <div className="flex items-center gap-3 mb-6">
-                <Monitor className="w-6 h-6 text-blue-400" />
-                <h3 className="text-xl sm:text-2xl font-medium text-slate-800">{t.about.frontend}</h3>
+              {/* Frontend Skills */}
+              <div>
+                <div className="flex items-center gap-3 mb-6">
+                  <Monitor className="w-6 h-6 text-blue-400" />
+                  <h3 className="text-xl sm:text-2xl font-medium text-slate-800">{t.about.frontend}</h3>
+                </div>
+                <div className="space-y-3 sm:space-y-4">
+                  {skillCategories.frontend.map((skill, index) => (
+                    <SkillBar key={skill.name} skill={skill.name} percentage={skill.percentage} delay={index} />
+                  ))}
+                </div>
               </div>
-              <div className="space-y-3 sm:space-y-4">
-                {skillCategories.frontend.map((skill, index) => (
-                  <SkillBar key={skill.name} skill={skill.name} percentage={skill.percentage} delay={index} />
-                ))}
-              </div>
-            </motion.div>
 
-            {/* Backend Skills */}
-            <motion.div
-              initial={{ opacity: 0, x: -50 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8, delay: 0.2 }}
-              className="order-3 lg:order-3"
-            >
-              <div className="flex items-center gap-3 mb-6">
-                <Server className="w-6 h-6 text-blue-400" />
-                <h3 className="text-xl sm:text-2xl font-medium text-slate-800">{t.about.backend}</h3>
+              {/* Backend Skills */}
+              <div>
+                <div className="flex items-center gap-3 mb-6">
+                  <Server className="w-6 h-6 text-blue-400" />
+                  <h3 className="text-xl sm:text-2xl font-medium text-slate-800">{t.about.backend}</h3>
+                </div>
+                <div className="space-y-3 sm:space-y-4">
+                  {skillCategories.backend.map((skill, index) => (
+                    <SkillBar key={skill.name} skill={skill.name} percentage={skill.percentage} delay={index + 4} />
+                  ))}
+                </div>
               </div>
-              <div className="space-y-3 sm:space-y-4">
-                {skillCategories.backend.map((skill, index) => (
-                  <SkillBar key={skill.name} skill={skill.name} percentage={skill.percentage} delay={index + 4} />
-                ))}
-              </div>
-            </motion.div>
 
-            {/* Database Skills + Experience */}
-            <motion.div
-              initial={{ opacity: 0, x: 50 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.4 }}
-              className="order-4 lg:order-4 space-y-8"
-            >
               {/* Database Skills */}
               <div>
                 <div className="flex items-center gap-3 mb-6">
@@ -713,12 +709,19 @@ export default function Portfolio() {
                   ))}
                 </div>
               </div>
+            </motion.div>
 
-              {/* Experience Card */}
+            {/* Experience Card - Separada */}
+            <motion.div
+              initial={{ opacity: 0, x: 50 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.4 }}
+              className="lg:order-3 lg:col-span-1 w-full max-w-md mx-auto lg:mx-0 lg:max-w-none"
+            >
               <Card className="bg-white/60 backdrop-blur-sm border-slate-200 shadow-lg">
                 <CardContent className="p-6 sm:p-8">
                   <h4 className="text-lg sm:text-xl font-medium text-blue-500 mb-4 sm:mb-6">{t.about.experience}</h4>
-                  <p className="text-slate-600 leading-relaxed text-sm sm:text-base mb-6 sm:mb-8">
+                  <p className="text-slate-600 leading-relaxed text-sm sm:text-base mb-4 sm:mb-6 lg:mb-8">
                     {t.about.experienceText}
                   </p>
 
