@@ -716,7 +716,8 @@ export default function Portfolio() {
               initial={{ opacity: 0, x: 50 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.4 }}
-              className="lg:order-3 lg:col-span-1 w-full max-w-md mx-auto lg:mx-0 lg:max-w-none"
+              className="w-full max-w-md mx-auto lg:mx-0 lg:max-w-none flex justify-center lg:justify-start"
+
             >
               <Card className="bg-white/60 backdrop-blur-sm border-slate-200 shadow-lg">
                 <CardContent className="p-6 sm:p-8">
