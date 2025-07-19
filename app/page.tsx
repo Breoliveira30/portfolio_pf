@@ -44,7 +44,7 @@ const translations = {
         "Desenvolvedor com 1 ano e 3 meses de experiência na Defensoria Pública do Distrito Federal, atuando tanto no desenvolvimento quanto em testes de software. Apaixonado por criar soluções que fazem a diferença na vida das pessoas.",
       skills: "Minhas Habilidades",
       frontend: "Front-end",
-      backend: "Front-end",
+      backend: "Back-end",
       database: "Dados",
       experience: "Experiência",
       experienceText:
